@@ -1,9 +1,49 @@
-:root{--bg:#F6F7FB;--ink:#14152B;--muted:#6B6F80;--accent:#5A57F4;--card:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#0F101E;--ink:#F3F1EC;--muted:#A8ABB8;--card:#1B1E2E}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-main{max-width:720px;margin:0 auto;padding:48px 20px}img.icon{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
-h1{font-size:34px;margin:20px 0 6px}h2{font-size:21px;margin-top:32px}p,li{color:var(--muted)}a{color:var(--accent)}
-.card{background:var(--card);border-radius:20px;padding:20px 22px;margin:22px 0;box-shadow:0 4px 16px rgba(0,0,0,.05)}
-footer{margin-top:40px;font-size:14px;color:var(--muted)}.cta{background:var(--accent);color:#fff;border-radius:20px;padding:20px 22px;margin:28px 0}.cta p{color:#fff}
-.cta a.btn{display:inline-block;background:#fff;color:var(--accent);font-weight:700;border-radius:12px;padding:10px 16px;text-decoration:none;margin-top:6px}
-nav.lang{font-size:14px;margin-bottom:8px}
+/* Hop : d'un appareil à l'autre. Schibsted Grotesk, noir sur blanc, un orange de signal. Échelle de 8 px. */
+@font-face{font-family:"Schibsted";src:url(fonts/schibsted.woff2) format("woff2");font-weight:400 900;font-display:swap}
+:root{--bg:#FBFBF8;--ink:#101114;--muted:#45474F;--accent:#C2410C;--signal:#FF5A1F;--trait:#DEDDD6;--card:#FBFBF8;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s6:48px;--s8:64px;--s12:96px}
+@media (prefers-color-scheme:dark){:root{--bg:#101114;--ink:#F4F3EF;--muted:#B4B5BC;--accent:#FF8A5C;--signal:#FF5A1F;--trait:#2B2C31;--card:#101114}}
+*{box-sizing:border-box}html{background:var(--bg)}
+body{margin:0;color:var(--ink);font:400 18px/1.6 "Schibsted",system-ui,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:var(--s4) var(--s3) var(--s8)}
+a{color:var(--ink);text-decoration-color:var(--signal);text-decoration-thickness:2px;text-underline-offset:4px}
+a:hover,a:focus-visible{color:var(--accent);text-decoration-thickness:3px}
+:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+p,li{color:var(--muted);max-width:64ch}strong{color:var(--ink)}
+code{font:600 .92em ui-monospace,Consolas,monospace;color:var(--ink);background:none;border-bottom:2px solid var(--signal)}
+.marque{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font-weight:800;font-size:20px;margin-bottom:var(--s8)}
+.marque img{width:36px;height:36px;border-radius:9px}
+nav.lang{font-size:15px;margin-bottom:var(--s3);color:var(--muted)}
+h1{font-weight:800;font-size:clamp(40px,6.4vw,80px);line-height:.98;letter-spacing:-.035em;margin:0 0 var(--s3);max-width:16ch}
+h2{font-weight:700;font-size:clamp(22px,2.6vw,30px);line-height:1.15;letter-spacing:-.02em;margin:var(--s6) 0 var(--s2)}
+.card{border-left:4px solid var(--signal);padding:var(--s1) 0 var(--s1) var(--s3);margin:var(--s4) 0;background:none}
+footer{margin-top:var(--s8);padding-top:var(--s3);border-top:1px solid var(--trait);font-size:15px;color:var(--muted)}
+.cta{background:var(--ink);padding:var(--s4);margin:var(--s6) 0}.cta p,.cta strong{color:var(--bg);margin-top:0}
+.cta a.btn,.cta .btn{display:inline-block;background:var(--signal);color:#101114;font-weight:800;padding:12px 20px;text-decoration:none}
+.cta a.btn:hover,.cta .btn:hover,.cta a.btn:focus-visible{background:var(--bg);color:var(--ink)}
+
+/* Le transfert : la signature de Hop */
+.transfert{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--s3);margin:0 0 var(--s4)}
+.transfert span{font-weight:900;font-size:clamp(48px,11vw,152px);line-height:.9;letter-spacing:-.05em}
+.transfert i{display:block;height:clamp(6px,1vw,12px);background:var(--signal);position:relative}
+.transfert i::after{content:"";position:absolute;right:-2px;top:50%;transform:translateY(-50%);border-left:clamp(18px,3vw,36px) solid var(--signal);border-top:clamp(14px,2.2vw,28px) solid transparent;border-bottom:clamp(14px,2.2vw,28px) solid transparent}
+.vers{display:flex;flex-wrap:wrap;gap:4px 10px;font-weight:700;font-size:clamp(18px,2vw,22px);margin:0 0 var(--s8)}
+.vers b{color:var(--muted);font-weight:500}
+.chapeau{font-size:clamp(20px,2.2vw,26px);line-height:1.4;color:var(--ink);max-width:36ch;margin:0 0 var(--s4)}
+
+/* Questions : des lignes qui s'ouvrent */
+.questions{border-top:2px solid var(--ink);margin:var(--s6) 0}
+.questions details{border-bottom:1px solid var(--trait)}
+.questions summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:var(--s3);padding:var(--s3) 0;font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.015em;line-height:1.2}
+.questions summary::-webkit-details-marker{display:none}
+.questions summary::after{content:"+";font-weight:400;color:var(--accent);transition:transform .2s}
+.questions details[open] summary::after{transform:rotate(45deg)}
+.questions summary:hover,.questions summary:focus-visible{color:var(--accent)}
+.questions details p{margin:0 0 var(--s3)}
+.guides{width:100%;border-collapse:collapse;font-size:17px}
+.guides th{text-align:left;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:var(--s1) 0}
+.guides td{border-top:1px solid var(--trait);padding:12px var(--s2) 12px 0}
+.support{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:var(--s2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:var(--s4) 0;margin:var(--s8) 0 0}
+.support p{margin:0}.support a{font-weight:800;font-size:clamp(20px,2.4vw,28px)}
+@media (max-width:720px){main{padding:var(--s3) var(--s2) var(--s6)}.marque{margin-bottom:var(--s6)}.transfert{gap:var(--s2)}.guides td{display:block;border:0;padding:4px 0}.guides tr{display:block;border-top:1px solid var(--trait);padding:var(--s1) 0}.guides thead{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
